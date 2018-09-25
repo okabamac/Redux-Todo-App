@@ -13,22 +13,36 @@ body {
     background: rgb(211, 84, 84);
 }
 
-.heading {
-    top: 10vh;
+#content {
+    background: #fff;
+    width: 1200px;
+    margin: 0 auto;
+    top: 5vh;
+    padding: 2rem;
     position: relative;
-    color: #fff;
+    height: 90vh;
+    border-radius: 10px;
+    text-align: center;
+    border: 3px solid rgb(211, 84, 84);
+}
+
+.heading {
+    top: 0.5vh;
+    position: relative;
+    color: rgb(211, 84, 84);
+    text-decoration: underline;
 }
 
 .inputsDiv {
     position: relative;
-    top: 14vh;
+    top: 5vh;
 }
 
 input {
     width: 320px;
     height: 40px;
     font-size: 19px;
-    border: rgb(211, 84, 84);
+    border: 3px solid rgb(211, 84, 84);
     margin: 0.3rem;
     padding: 1rem;
     border-radius: 10px;
@@ -44,15 +58,18 @@ button {
 
 #container {
     position: relative;
-    top: 16vh;
+    top: 8vh;
 }
 
 #container>div {
-    background: rgb(236, 130, 130);
-    margin: 0.5rem;
     padding: 1rem;
-    color: #fff;
-    border-radius: 20px;
     max-width: 400px;
     word-wrap: break-word;
+    text-align: left;
+    font-size: 22px;
+    margin-left: 23rem;
+    margin-top: 0.3rem;
+    background: rgb(211, 84, 84);
+    border-radius: 10px;
+    color: #fff
 }
