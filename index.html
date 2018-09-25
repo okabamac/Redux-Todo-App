@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Redux Todo App</title>
+</head>
+
+<body>
+    <div id="content">
+        <h1 class="heading">ToDo App with Redux</h1>
+        <div class="inputsDiv">
+            <input type="text" id="todo">
+            <button id="submit-to-do">Submit</button>
+        </div>
+        <div id="container">
+
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.0/redux.min.js"></script>
+    <script>
+        const reducer = Redux.combineReducers({
+            todos: (state = [], action) => {
+
+                const newState = Object.assign([], state);
+
+                if (action.type == 'add') {
+                    newState.push(action.item);
+                }
+
+                if (action.type == 'remove') {
+                    newState.splice(action.index, 1);
+                }
+                return newState;
+            }
+        });
+
+        const store = Redux.createStore(reducer);
+        const render = () => {
+            const container = document.getElementById('container');
+            container.innerHTML = '';
+            const state = store.getState();
+            state.todos.forEach((todo, i) => {
+                const e = document.createElement('div');
+                e.innerHTML = todo;
+                container.appendChild(e);
+
+                e.onclick = () => {
+                    store.dispatch({
+                        type: 'remove',
+                        index: i
+                    });
+
+                    render();
+                }
+            });
+        }
+        document.getElementById('submit-to-do').onclick = () => {
+            runSubmit();
+        };
+        const input = document.getElementById("todo");
+        input.addEventListener("keyup", function (event) {
+            event.preventDefault();
+            if (event.keyCode === 13) {
+                runSubmit()
+            }
+        });
+        const runSubmit = () => {
+            if (document.getElementById('todo').value === '') {
+                return;
+            }
+            store.dispatch({
+                type: 'add',
+                item: document.getElementById('todo').value
+            });
+
+            render();
+            document.getElementById('todo').value = '';
+        }
+    </script>
+</body>
+
+</html>
